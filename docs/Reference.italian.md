@@ -64,6 +64,7 @@ Questo documento elenca le attuali proprietà e metodi pubblici di React Native 
 - [`allowsBackForwardNavigationGestures`](Reference.italian.md#allowsbackforwardnavigationgestures)
 - [`incognito`](Reference.italian.md#incognito)
 - [`allowFileAccess`](Reference.italian.md#allowFileAccess)
+- [`allowInsecureHttps`](Reference.italian.md#allowInsecureHttps)
 - [`saveFormDataDisabled`](Reference.italian.md#saveFormDataDisabled)
 - [`cacheEnabled`](Reference.italian.md#cacheEnabled)
 - [`cacheMode`](Reference.italian.md#cacheMode)
@@ -1136,6 +1137,19 @@ Se impostato su `true`, consentirà l'accesso ai file di sistema tramite URI `fi
 | Tipo    | Obbligatorio | Piattaforma  |
 | ------- | ------------ | ------------ |
 | boolean | No           | Android      |
+
+---
+
+### `allowInsecureHttps`[⬆](#props-index)
+
+Boolean that sets whether SSL verification should be disabled for any URLs loaded in the WebView. The default value is `false`.
+
+> [!WARNING]
+> Setting this to `true` can expose your app to security vulnerabilities, and may result in your app being rejected from the Play Store.
+
+| Tipo | Obbligatorio | Piattaforma |
+|------|--------------|-------------|
+| bool | No           | Android     |
 
 ---
 
