@@ -164,7 +164,7 @@ public class RNCWebViewClient extends WebViewClient {
         super.onReceivedHttpAuthRequest(view, handler, host, realm);
     }
 
-    @Override
+   @Override
     public void onReceivedSslError(final WebView webView, final SslErrorHandler handler, final SslError error) {
         // onReceivedSslError is called for most requests, per Android docs: https://developer.android.com/reference/android/webkit/WebViewClient#onReceivedSslError(android.webkit.WebView,%2520android.webkit.SslErrorHandler,%2520android.net.http.SslError)
         // WebView.getUrl() will return the top-level window URL.
@@ -172,7 +172,7 @@ public class RNCWebViewClient extends WebViewClient {
         // This is desired behavior. We later use these values to determine whether the request is a top-level navigation or a subresource request.
         String topWindowUrl = webView.getUrl();
         String failingUrl = error.getUrl();
-
+ 
         // If SSL verification is disabled, allow request to proceed.
         if (mAllowInsecureHttps) {
             handler.proceed();
@@ -183,18 +183,17 @@ public class RNCWebViewClient extends WebViewClient {
             // If request is cancelled before obtaining top-level URL, undesired behavior may occur.
             // Undesired behavior: Return value of WebView.getUrl() may be the current URL instead of the failing URL.
             handler.cancel();
-        }
-
+ 
         if (!topWindowUrl.equalsIgnoreCase(failingUrl)) {
             // If error is not due to top-level navigation, then do not call onReceivedError()
             Log.w(TAG, "Resource blocked from loading due to SSL error. Blocked URL: "+failingUrl);
             return;
         }
-
+ 
         int code = error.getPrimaryError();
         String description = "";
         String descriptionPrefix = "SSL error: ";
-
+ 
         // https://developer.android.com/reference/android/net/http/SslError.html
         switch (code) {
             case SslError.SSL_DATE_INVALID:
@@ -219,16 +218,16 @@ public class RNCWebViewClient extends WebViewClient {
                 description = "Unknown SSL Error";
                 break;
         }
-
+ 
         description = descriptionPrefix + description;
-
+ 
         this.onReceivedError(
                 webView,
                 code,
                 description,
                 failingUrl
         );
-    }
+    }}
 
     @Override
     public void onReceivedError(
